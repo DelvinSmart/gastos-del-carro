@@ -1,0 +1,13 @@
+# Paquetes que se reinstalan con "npm install"
+node_modules/
+
+# Cosas del sistema y de los emuladores
+.DS_Store
+*.log
+
+# Nada privado: claves y contraseñas
+.env
+.env.*
+*.key
+*.pem
+service-account*.json

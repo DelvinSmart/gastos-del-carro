@@ -1,0 +1,27 @@
+rules_version = '2';
+
+// Las reglas de seguridad de Firestore (Tema 08). Cada persona solo lee y escribe SUS gastos.
+// Se prueban "como atacante" en firebase/pruebas/reglas.test.ts: las trampas tienen que fallar.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function conSesion() { return request.auth != null; }
+    function esDueno(uid) { return conSesion() && request.auth.uid == uid; }
+    function gastoValido(g) {
+      return g.keys().hasOnly(['tipo', 'valor', 'fecha'])
+        && g.tipo in ['combustible', 'lavado', 'peaje', 'mantenimiento', 'otro']
+        && g.valor is number && g.valor > 0 && g.valor <= 100000
+        && g.fecha is string && g.fecha.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+    }
+
+    match /usuarios/{uid}/gastos/{gastoId} {
+      allow read, delete: if esDueno(uid);
+      allow create, update: if esDueno(uid) && gastoValido(request.resource.data);
+    }
+
+    // Todo lo demás, cerrado.
+    match /{documento=**} {
+      allow read, write: if false;
+    }
+  }
+}

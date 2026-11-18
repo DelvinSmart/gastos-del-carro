@@ -1,0 +1,49 @@
+# La revisión automática (CI, Tema 04): en cada subida, una computadora limpia de GitHub
+# instala todo desde cero y corre los candados y las pruebas. Si algo falla, la subida se marca en rojo.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  app:
+    name: La app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: TypeScript
+        run: npm run tipos
+      - name: Candado de diseño
+        run: npm run check:diseno
+      - name: Sin ciclos
+        run: npm run check:ciclos
+      - name: Tamaño de archivos
+        run: npm run check:tamano
+      - name: Secretos
+        run: npm run check:secretos
+      - name: Pruebas
+        run: npm test
+
+  reglas:
+    name: Las reglas de Firestore
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: npm ci
+      - name: Pruebas de las reglas (emulador)
+        run: npm run test:reglas

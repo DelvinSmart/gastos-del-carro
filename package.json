@@ -1,0 +1,26 @@
+{
+  "name": "gastos-del-carro",
+  "version": "1.0.0",
+  "description": "Proyecto de práctica del Mapa de estudios: una app pequeña con las mismas piezas que una app real (TypeScript, pruebas, candados, CI, Firebase).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "tipos": "tsc --noEmit",
+    "check:diseno": "node scripts/check-diseno.mjs",
+    "check:ciclos": "madge --circular --extensions ts src",
+    "check:tamano": "node scripts/check-tamano.mjs",
+    "check:secretos": "node scripts/check-secretos.mjs",
+    "verificar": "npm run tipos && npm run check:diseno && npm run check:ciclos && npm run check:tamano && npm run check:secretos && npm test",
+    "test:reglas": "firebase emulators:exec --only firestore --project demo-gastos \"vitest run --config firebase/pruebas/vitest.config.ts\""
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^4.0.1",
+    "@types/node": "^22.10.0",
+    "firebase": "^11.0.2",
+    "firebase-tools": "^13.24.1",
+    "madge": "^8.0.0",
+    "typescript": "^5.4.5",
+    "vitest": "^2.1.8"
+  }
+}
