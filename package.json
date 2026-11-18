@@ -12,7 +12,8 @@
     "check:tamano": "node scripts/check-tamano.mjs",
     "check:secretos": "node scripts/check-secretos.mjs",
     "verificar": "npm run tipos && npm run check:diseno && npm run check:ciclos && npm run check:tamano && npm run check:secretos && npm test",
-    "test:reglas": "firebase emulators:exec --only firestore --project demo-gastos \"vitest run --config firebase/pruebas/vitest.config.ts\""
+    "test:reglas": "firebase emulators:exec --only firestore --project demo-gastos \"vitest run --config firebase/pruebas/vitest.config.ts\"",
+    "mostrar": "tsx scripts/mostrar.ts"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^4.0.1",
@@ -20,6 +21,7 @@
     "firebase": "^11.0.2",
     "firebase-tools": "^13.24.1",
     "madge": "^8.0.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.4.5",
     "vitest": "^2.1.8"
   }

@@ -32,6 +32,7 @@ npm install
 | Comando | Qué hace |
 |---|---|
 | `npm test` | Corre las pruebas de la app |
+| `npm run mostrar` | Dibuja la "pantalla" de la app en la terminal (`npm run mostrar -- pt` en portugués), con los textos y el motor de diseño |
 | `npm run tipos` | TypeScript revisa los tipos de todo el proyecto |
 | `npm run check:diseno` | Candado: ningún color escrito a mano fuera del motor |
 | `npm run check:ciclos` | Candado: ningún archivo depende de otro en círculo |

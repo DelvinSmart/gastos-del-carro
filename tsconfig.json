@@ -11,5 +11,5 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["src", "firebase/pruebas"]
+  "include": ["src", "firebase/pruebas", "scripts/**/*.ts"]
 }

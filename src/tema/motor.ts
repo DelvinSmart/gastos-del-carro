@@ -26,6 +26,11 @@ export const espacio = {
   chico: 8,              // entre piezas pequeñas (un ícono y su texto)
 } as const;
 
+/** Medidas de piezas: la barra de combustible ocupa como máximo este pedazo del ancho (0.75 = 75 %). */
+export const medidas = {
+  barraCombustibleMaxima: 0.75,
+} as const;
+
 /** Efectos: sombras y transparencias. */
 export const efectos = {
   sombra: '0 10px 30px rgba(0, 0, 0, 0.35)',
