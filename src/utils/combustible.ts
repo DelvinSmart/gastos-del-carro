@@ -16,6 +16,11 @@ export type NivelCombustible =
   | { estado: 'sin_consumo' }          // hay cargas, pero ningún tanque cerrado: no se sabe el km/L
   | { estado: 'ok'; fraccion: number; litrosQuedan: number; autonomiaKm: number; kmPorLitro: number };
 
+/** Los vehículos sin tanque (la bicicleta) no muestran nada de combustible. */
+export function vehiculoTieneTanque(tipo: string | undefined): boolean {
+  return tipo !== 'bicicleta';
+}
+
 export const CAPACIDAD_MIN = 1;
 export const CAPACIDAD_MAX = 200;
 
